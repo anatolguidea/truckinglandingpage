@@ -70,11 +70,10 @@ const Navbar = () => {
               className="flex-shrink-0 flex items-center space-x-3"
             >
               <img
-                src="/logo.jpg"
+                src="/NEG Logo gradient white.png"
                 alt="Nomad Express Group Logo"
                 className="h-8 w-auto"
               />
-              <span className="text-white font-bold text-lg hidden sm:block">Nomad Express Group</span>
             </motion.div>
 
             {/* Desktop Navigation Links */}
