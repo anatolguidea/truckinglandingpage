@@ -81,7 +81,7 @@ const TeamSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="snap-center shrink-0 w-full md:w-[900px] max-w-[95vw]"
+                className="snap-center shrink-0 w-full md:w-[800px] max-w-[95vw]"
               >
                 <div className="transition-transform duration-500 will-change-transform hover:-translate-y-1">
                   <div className="float-card rounded-xl overflow-hidden bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl">
