@@ -4,7 +4,7 @@ import * as motion from 'motion/react-client';
 
 const HeroSection = () => {
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="about" className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Image Background */}
       <div 
         className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
@@ -57,17 +57,7 @@ const HeroSection = () => {
               element.scrollIntoView({ behavior: 'smooth' });
             }
           }}
-          className="text-white px-6 py-3 rounded-full text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
-          style={{
-            backgroundColor: '#c3002e',
-            background: 'linear-gradient(145deg, #c3002e, #a40025)'
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.background = 'linear-gradient(145deg, #e10037, #c3002e)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.background = 'linear-gradient(145deg, #c3002e, #a40025)';
-          }}
+          className="btn-primary text-white px-6 py-3 rounded-full text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
         >
           GET A QUOTE
         </motion.button>

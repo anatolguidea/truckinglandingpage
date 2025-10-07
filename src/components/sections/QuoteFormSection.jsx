@@ -217,17 +217,7 @@ const QuoteFormSection = () => {
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full text-white py-2.5 px-4 rounded font-semibold text-sm transition-all duration-200"
-                  style={{
-                    backgroundColor: '#c3002e',
-                    background: 'linear-gradient(145deg, #c3002e, #a40025)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = 'linear-gradient(145deg, #e10037, #c3002e)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = 'linear-gradient(145deg, #c3002e, #a40025)';
-                  }}
+                  className="btn-primary w-full text-white py-2.5 px-4 rounded font-semibold text-sm transition-all duration-200"
                 >
                   Request a Quote
                 </motion.button>

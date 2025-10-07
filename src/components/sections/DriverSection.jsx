@@ -209,19 +209,8 @@ const DriverSection = () => {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="w-full mt-6 px-6 py-3 rounded-lg font-semibold transition-all duration-200"
-                      style={{
-                        backgroundColor: '#c3002e',
-                        color: '#ffffff',
-                        background: 'linear-gradient(145deg, #c3002e, #a40025)',
-                        border: 'none'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = 'linear-gradient(145deg, #e10037, #c3002e)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = 'linear-gradient(145deg, #c3002e, #a40025)';
-                      }}
+                      onClick={() => { window.location.href = '/apply'; }}
+                      className="btn-primary w-full mt-6 px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white"
                     >
                       Apply Now
                     </motion.button>

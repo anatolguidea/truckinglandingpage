@@ -43,20 +43,7 @@ const ContactSection = () => {
                 element.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="text-white px-6 py-3 rounded-lg text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
-            style={{
-              backgroundColor: '#c3002e',
-              background: 'linear-gradient(145deg, #c3002e, #a40025)',
-              boxShadow: '0 10px 15px -3px rgba(195, 0, 46, 0.3)'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.background = 'linear-gradient(145deg, #e10037, #c3002e)';
-              e.target.style.boxShadow = '0 20px 25px -5px rgba(195, 0, 46, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.background = 'linear-gradient(145deg, #c3002e, #a40025)';
-              e.target.style.boxShadow = '0 10px 15px -3px rgba(195, 0, 46, 0.3)';
-            }}
+            className="btn-primary text-white px-6 py-3 rounded-lg text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
           >
             GET FREE QUOTE
           </motion.button>

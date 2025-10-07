@@ -5,15 +5,22 @@ import { services } from '../../data/servicesData';
 
 const ServicesSection = () => {
   const scrollToQuoteForm = () => {
-    const quoteSection = document.getElementById('quote');
+    const quoteSection = document.getElementById('quote-form');
     if (quoteSection) {
       quoteSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <section id="services" className="py-20 bg-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="py-20 bg-black relative overflow-hidden">
+      {/* Background image and dark overlay */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: 'url(/gradient.png)' }}
+      ></div>
+      <div className="absolute inset-0 bg-black/60"></div>
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -102,9 +109,9 @@ const ServicesSection = () => {
       </div>
       
       {/* Gradient Bottom Line */}
-      <div className="mt-16 flex justify-center">
+      <div className="relative z-10 mt-16 flex justify-center">
         <div 
-          className="h-2 w-full max-w-7xl rounded-full"
+          className="h-3 w-full max-w-7xl rounded-full"
           style={{
             background: `linear-gradient(to right, #e10037, #6a0011)`
           }}

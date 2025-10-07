@@ -1,6 +1,7 @@
 'use client';
 
 import * as motion from 'motion/react-client';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
@@ -9,11 +10,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <img
-                src="/logo.jpg"
-                alt="Nomad Express Group Logo"
-                className="h-8 w-auto"
-              />
+              <Image src="/logo.jpg" alt="Nomad Express Group Logo" width={112} height={32} />
               <span className="text-white font-bold text-lg">Nomad Express Group</span>
             </div>
             <p className="text-gray-400 text-sm mb-6">
@@ -57,17 +54,7 @@ const Footer = () => {
               <motion.a
                 href="tel:5551234567"
                 whileHover={{ scale: 1.05 }}
-                className="block text-white px-4 py-2 rounded text-sm font-medium text-center transition-all duration-200"
-                style={{
-                  backgroundColor: '#c3002e',
-                  background: 'linear-gradient(145deg, #c3002e, #a40025)'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = 'linear-gradient(145deg, #e10037, #c3002e)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = 'linear-gradient(145deg, #c3002e, #a40025)';
-                }}
+                className="btn-primary block text-white px-4 py-2 rounded text-sm font-medium text-center transition-all duration-200"
               >
                 CALL NOW
               </motion.a>

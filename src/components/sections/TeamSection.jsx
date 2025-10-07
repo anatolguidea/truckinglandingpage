@@ -2,164 +2,106 @@
 
 import * as motion from 'motion/react-client';
 import { team } from '../../data/teamData';
+import { useRef } from 'react';
+import Image from 'next/image';
 
 const TeamSection = () => {
+  const sliderRef = useRef(null);
+
+  const scrollBySlide = (direction) => {
+    const container = sliderRef.current;
+    if (!container) return;
+    const slideWidth = container.clientWidth; // one viewport width slide
+    container.scrollTo({
+      left: container.scrollLeft + (direction === 'next' ? slideWidth : -slideWidth),
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <>
       <style jsx>{`
-        .team-card {
-          border: 4px solid rgba(220, 38, 38, 0.4);
-          background: rgba(0, 0, 0, 0.6);
-          backdrop-filter: blur(12px);
-          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .team-card:hover {
-          border-color: rgba(220, 38, 38, 0.7);
-          background: rgba(0, 0, 0, 0.5);
-          box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.4);
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .float-card { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+          0% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
+          100% { transform: translateY(0); }
         }
       `}</style>
       <section id="team" className="py-20 relative overflow-hidden">
-        {/* Main gradient background */}
+        {/* Background image and dark overlay */}
         <div 
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(45deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.98), rgba(0, 0, 0, 1))'
-          }}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/gradient2.png)' }}
         ></div>
-        
-        {/* Top Left Red Accent */}
-        <div 
-          className="absolute top-0 left-0 w-96 h-96 opacity-60 filter blur-3xl"
-          style={{
-            background: 'rgba(225, 0, 55, 0.3)',
-            transform: 'translate(-25%, -25%)'
-          }}
-        ></div>
-        
-        {/* Bottom Right Red Accent */}
-        <div 
-          className="absolute bottom-0 right-0 w-96 h-96 opacity-60 filter blur-3xl"
-          style={{
-            background: 'rgba(220, 38, 38, 0.3)',
-            transform: 'translate(25%, 25%)'
-          }}
-        ></div>
-        
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Our Leadership Team
-          </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Meet the experienced professionals who drive our success and commitment to excellence.
-          </p>
-        </motion.div>
+        <div className="absolute inset-0 bg-black/70"></div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {team.map((member, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] cursor-pointer group team-card"
-            >
-              {/* Gradient Background Layers */}
-              <div 
-                className="absolute inset-0 -z-10 transition-all duration-300 group-hover:opacity-100"
-                style={{
-                  background: 'linear-gradient(145deg, rgba(220, 38, 38, 0.2), rgba(0, 0, 0, 0.8), rgba(220, 38, 38, 0.3))'
-                }}
-              ></div>
-              
-              {/* Additional gradient layer for depth */}
-              <div 
-                className="absolute inset-0 -z-10 transition-all duration-300 group-hover:opacity-100"
-                style={{
-                  background: 'linear-gradient(315deg, rgba(225, 0, 55, 0.15), transparent, rgba(220, 38, 38, 0.1))'
-                }}
-              ></div>
-              
-              {/* Hover gradient overlay */}
-              <div 
-                className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background: 'linear-gradient(145deg, rgba(225, 0, 55, 0.3), transparent, rgba(220, 38, 38, 0.4))'
-                }}
-              ></div>
-              
-              {/* Top Right Glowing Orb */}
-              <div 
-                className="absolute top-0 right-0 -z-10 transition-all duration-300 group-hover:scale-110"
-                style={{
-                  width: '320px',
-                  height: '320px',
-                  background: 'rgba(220, 38, 38, 0.2)',
-                  borderRadius: '50%',
-                  filter: 'blur(100px)',
-                  transform: 'translate(50%, -50%)'
-                }}
-              ></div>
-              
-              {/* Bottom Left Glowing Orb */}
-              <div 
-                className="absolute top-0 left-0 -z-10 transition-all duration-300 group-hover:scale-110"
-                style={{
-                  width: '320px',
-                  height: '320px',
-                  background: 'rgba(220, 38, 38, 0.2)',
-                  borderRadius: '50%',
-                  filter: 'blur(100px)',
-                  transform: 'translate(-50%, -50%)'
-                }}
-              ></div>
-              
-              {/* Content */}
-              <div className="relative z-10 p-8">
-                <div className="flex items-start space-x-6">
-                  <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <motion.h3 
-                      className="text-xl font-semibold text-white mb-1 transition-all duration-300 group-hover:text-red-200"
-                      whileHover={{ y: -2 }}
-                    >
-                      {member.name}
-                    </motion.h3>
-                    <motion.p 
-                      className="font-medium mb-3 text-lg text-white transition-all duration-300 group-hover:text-red-300"
-                      whileHover={{ y: -2 }}
-                    >
-                      {member.position}
-                    </motion.p>
-                    <motion.p 
-                      className="text-gray-300 text-sm leading-relaxed transition-colors duration-300 group-hover:text-gray-200"
-                      whileHover={{ y: -1 }}
-                    >
-                      {member.bio}
-                    </motion.p>
+        {/* Header */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">Our Leadership Team</h2>
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto">Meet the experienced professionals who drive our success and commitment to excellence.</p>
+          </motion.div>
+        </div>
+
+        {/* Controls */}
+        <button
+          aria-label="Previous team member"
+          onClick={() => scrollBySlide('prev')}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/80 text-white rounded-full p-3 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path fillRule="evenodd" d="M15.78 4.22a.75.75 0 0 1 0 1.06L9.06 12l6.72 6.72a.75.75 0 1 1-1.06 1.06l-7.25-7.25a.75.75 0 0 1 0-1.06l7.25-7.25a.75.75 0 0 1 1.06 0Z" clipRule="evenodd"/></svg>
+        </button>
+        <button
+          aria-label="Next team member"
+          onClick={() => scrollBySlide('next')}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/80 text-white rounded-full p-3 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path fillRule="evenodd" d="M8.22 19.78a.75.75 0 0 1 0-1.06L14.94 12 8.22 5.28a.75.75 0 1 1 1.06-1.06l7.25 7.25a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0Z" clipRule="evenodd"/></svg>
+        </button>
+
+        {/* Slider - horizontal scroll with snap, narrow photo, wide text */}
+        <div className="relative z-10">
+          <div
+            ref={sliderRef}
+            className="no-scrollbar overflow-x-auto scroll-smooth snap-x snap-mandatory flex gap-6 px-4 sm:px-6 lg:px-8"
+          >
+            {team.map((member, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="snap-center shrink-0 w-full md:w-[900px] max-w-[95vw]"
+              >
+                <div className="transition-transform duration-500 will-change-transform hover:-translate-y-1">
+                  <div className="float-card rounded-xl overflow-hidden bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl">
+                    <div className="grid grid-cols-1 md:grid-cols-5">
+                      <div className="h-72 md:h-96 md:col-span-2 relative">
+                        <Image src={member.image} alt={member.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, 900px" />
+                      </div>
+                      <div className="p-6 md:p-8 flex flex-col justify-center md:col-span-3">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{member.name}</h3>
+                        <p className="text-red-200 font-medium mb-4">{member.position}</p>
+                        <p className="text-gray-200 leading-relaxed">{member.bio}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </>
   );
 };

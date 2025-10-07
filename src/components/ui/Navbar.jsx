@@ -1,6 +1,7 @@
 'use client';
 
 import * as motion from 'motion/react-client';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 const Navbar = () => {
@@ -24,7 +25,7 @@ const Navbar = () => {
   };
 
   const navigationItems = [
-    { name: 'About Us', href: '#' },
+    { name: 'About Us', action: () => scrollToSection('about') },
     { name: 'Services', action: () => scrollToSection('services') },
     { name: 'Our Team', action: () => scrollToSection('team') },
     { name: 'Careers', action: () => scrollToSection('careers') },
@@ -49,11 +50,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               className="flex-shrink-0 flex items-center space-x-3"
             >
-              <img
-                src="/NEG Logo gradient white.png"
-                alt="Nomad Express Group Logo"
-                className="h-8 w-auto"
-              />
+              <Image src="/NEG Logo gradient white.png" alt="Nomad Express Group Logo" width={112} height={32} priority />
             </motion.div>
 
             {/* Desktop Navigation Links */}
@@ -80,17 +77,7 @@ const Navbar = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection('quote-form')}
-                className="text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
-                style={{
-                  backgroundColor: '#c3002e',
-                  background: 'linear-gradient(145deg, #c3002e, #a40025)'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = 'linear-gradient(145deg, #e10037, #c3002e)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = 'linear-gradient(145deg, #c3002e, #a40025)';
-                }}
+                className="btn-primary text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
               >
                 Get a Quote
               </motion.button>
