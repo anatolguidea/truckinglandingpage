@@ -35,3 +35,58 @@ body {
 .btn-primary:hover {
   background: linear-gradient(145deg, #e10037, var(--primary));
 }
+
+/* Performance Optimizations */
+.hero-zoom {
+  will-change: transform;
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  from { 
+    transform: scale(1); 
+  }
+  to { 
+    transform: scale(1.05); 
+  }
+}
+
+/* Optimize animations with GPU acceleration */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* CTA Background Animation */
+.cta-zoom {
+  animation: ctaZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes ctaZoom {
+  from { 
+    transform: scale(1); 
+  }
+  to { 
+    transform: scale(1.05); 
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .hero-zoom,
+  .cta-zoom {
+    animation: none;
+    transform: scale(1.02);
+  }
+}
