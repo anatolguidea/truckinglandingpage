@@ -61,28 +61,16 @@ export const SERVICE_TYPES = [
     icon: '/logistics.jpg'
   },
   {
-    slug: 'expedited',
-    title: 'Expedited Services',
-    description: 'Time-sensitive freight with guaranteed delivery',
-    icon: '/truck0.jpg'
+    slug: 'heavy-haul',
+    title: 'Heavy Haul Loads',
+    description: 'Specialized transportation for oversized and heavy freight',
+    icon: '/heavyhaul.jpg'
   },
   {
     slug: 'refrigerated',
     title: 'Refrigerated Transport',
     description: 'Temperature-controlled shipping for perishables',
     icon: '/refrigerated.jpg'
-  },
-  {
-    slug: 'flatbed',
-    title: 'Flatbed & Step Deck',
-    description: 'Specialized equipment for oversized cargo',
-    icon: '/flatbed.jpg'
-  },
-  {
-    slug: 'heavy-haul',
-    title: 'Heavy Haul Loads',
-    description: 'Specialized transportation for oversized and heavy freight',
-    icon: '/heavyhaul.jpg'
   }
 ];
 

@@ -46,7 +46,7 @@ export default function ServicesContent() {
         <section className="py-24 relative">
           <Container className="relative z-10">
             <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 gap-8"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
