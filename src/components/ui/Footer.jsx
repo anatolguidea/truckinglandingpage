@@ -20,7 +20,7 @@ const Footer = () => {
               </div>
             </Link>
             <p className="text-gray-400 text-sm mb-6">
-              Your trusted partner in freight transportation for over 10 years. Professional service, reliable delivery.
+              Your trusted partner in freight transportation for almost a decade. Professional service, reliable delivery.
             </p>
             <div className="space-y-2">
               <div className="text-gray-400 text-sm">
@@ -41,9 +41,10 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Services</h3>
             <ul className="space-y-2 text-gray-400 text-sm">
-              <li><Link href={`${ROUTES.services}/flatbed`} className="hover:text-white transition-colors">Flatbed Transport</Link></li>
-              <li><Link href={`${ROUTES.services}/refrigerated`} className="hover:text-white transition-colors">Refrigerated Services</Link></li>
-              <li><Link href={`${ROUTES.services}/ltl`} className="hover:text-white transition-colors">LTL Services</Link></li>
+              <li><Link href={`${ROUTES.services}/full-truckload`} className="hover:text-white transition-colors">Full Truckload (FTL)</Link></li>
+              <li><Link href={`${ROUTES.services}/ltl`} className="hover:text-white transition-colors">Less Than Truckload (LTL)</Link></li>
+              <li><Link href={`${ROUTES.services}/heavy-haul`} className="hover:text-white transition-colors">Heavy Haul Loads</Link></li>
+              <li><Link href={`${ROUTES.services}/refrigerated`} className="hover:text-white transition-colors">Refrigerated Transport</Link></li>
               <li><Link href={ROUTES.services} className="hover:text-white transition-colors">All Services</Link></li>
             </ul>
           </div>

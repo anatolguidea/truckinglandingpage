@@ -2,11 +2,11 @@
 export const COMPANY_INFO = {
   name: 'Nomad Express Group',
   phone: {
-    transportation: '(555) 123-4567',
-    employment: '(555) 987-6543'
+    transportation: '(508) 292-3152',
+    employment: '(815) 207-3622'
   },
-  email: 'info@nomadexpress.com',
-  established: '2014',
+  email: 'office@nomadexpressgroup.com',
+  established: '2018',
   address: {
     street: '1234 Logistics Way',
     city: 'Dallas',

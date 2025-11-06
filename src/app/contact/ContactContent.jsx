@@ -91,7 +91,11 @@ export default function ContactContent() {
           <Container className="relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               <Card className="bg-black/40 border border-white/10 p-6 text-center">
-                <div className="text-4xl mb-4">📞</div>
+                <div className="w-16 h-16 rounded-lg bg-red-500/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
                 <h3 className="text-xl font-bold text-white mb-2">Transportation Services</h3>
                 <a 
                   href={`tel:${COMPANY_INFO.phone.transportation.replace(/[()-\s]/g, '')}`}
@@ -101,7 +105,11 @@ export default function ContactContent() {
                 </a>
               </Card>
               <Card className="bg-black/40 border border-white/10 p-6 text-center">
-                <div className="text-4xl mb-4">🚛</div>
+                <div className="w-16 h-16 rounded-lg bg-red-500/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
                 <h3 className="text-xl font-bold text-white mb-2">Driver Employment</h3>
                 <a 
                   href={`tel:${COMPANY_INFO.phone.employment.replace(/[()-\s]/g, '')}`}
@@ -111,7 +119,11 @@ export default function ContactContent() {
                 </a>
               </Card>
               <Card className="bg-black/40 border border-white/10 p-6 text-center">
-                <div className="text-4xl mb-4">✉️</div>
+                <div className="w-16 h-16 rounded-lg bg-red-500/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
                 <h3 className="text-xl font-bold text-white mb-2">Email</h3>
                 <a 
                   href={`mailto:${COMPANY_INFO.email}`}
@@ -231,18 +243,6 @@ export default function ContactContent() {
                 </Card>
               </div>
             </div>
-          </Container>
-        </section>
-
-        {/* Map Placeholder */}
-        <section className="py-24 relative">
-          <Container className="relative z-10">
-            <Card className="bg-black/40 border border-white/10 p-8">
-              <h3 className="text-xl font-bold text-white mb-4">Location Map</h3>
-              <div className="bg-gray-900 h-96 rounded-lg flex items-center justify-center">
-                <p className="text-gray-400">Map integration can be added here (Google Maps, Mapbox, etc.)</p>
-              </div>
-            </Card>
           </Container>
         </section>
       </div>

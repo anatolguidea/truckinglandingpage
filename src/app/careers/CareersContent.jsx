@@ -110,7 +110,7 @@ export default function CareersContent() {
                   drivers like the professionals they are.
                 </p>
                 <p>
-                  Today, we have grown to a fleet of over 150 trucks, and have been recognized by multiple sources 
+                  Today, we have grown to a fleet of over 50 trucks, and have been recognized by multiple sources 
                   as one of the top companies in the industry. We have worked to build a company of professionals 
                   with decades of experience in transportation, and the most satisfied fleet of professional drivers 
                   in the business.
@@ -199,7 +199,7 @@ export default function CareersContent() {
                       Start Application
                     </Button>
                     <div className="text-center text-gray-400 text-sm">
-                      Or call us at <a href="tel:5559876543" className="text-red-400 hover:text-red-300">(555) 987-6543</a>
+                      Or call us at <a href="tel:8152073622" className="text-red-400 hover:text-red-300">(815) 207-3622</a>
                     </div>
                   </div>
                 </div>
