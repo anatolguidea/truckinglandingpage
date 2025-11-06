@@ -88,7 +88,7 @@ export default function CareersContent() {
       <Section background="dark" className="pt-32 pb-20">
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-60"
-          style={{ backgroundImage: 'url(/driver-bg.jpg)' }}
+          style={{ backgroundImage: 'url(/truck0.jpg)' }}
         ></div>
         <div className="absolute inset-0 bg-black/70"></div>
         <Container className="relative z-10">
@@ -109,10 +109,10 @@ export default function CareersContent() {
 
       {/* Main Content with Animated Background */}
       <div className="bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
-        {/* Animated Background Gradient - Whole Background */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        {/* Animated Background Gradient - Whole Background - Optimized */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse will-change-opacity" style={{ animationDuration: '4s' }}></div>
+          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse will-change-opacity" style={{ animationDelay: '2s', animationDuration: '4s' }}></div>
         </div>
 
         {/* Introduction */}

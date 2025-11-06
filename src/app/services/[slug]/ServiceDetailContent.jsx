@@ -16,7 +16,7 @@ export default function ServiceDetailContent({ service, details }) {
       {/* Hero Section */}
       <Section background="dark" className="pt-32 pb-20">
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30"
+          className="absolute inset-0 bg-cover bg-center opacity-60"
           style={{ backgroundImage: `url(${service.icon})` }}
         ></div>
         <div className="absolute inset-0 bg-black/70"></div>

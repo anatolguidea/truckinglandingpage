@@ -42,10 +42,10 @@ export default function FleetContent() {
 
       {/* Main Content with Animated Background */}
       <div className="bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
-        {/* Animated Background Gradient - Whole Background */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        {/* Animated Background Gradient - Whole Background - Optimized */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse will-change-opacity" style={{ animationDuration: '4s' }}></div>
+          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse will-change-opacity" style={{ animationDelay: '2s', animationDuration: '4s' }}></div>
         </div>
 
         {/* Fleet Types */}
@@ -59,7 +59,10 @@ export default function FleetContent() {
                       src={equipment.image} 
                       alt={equipment.name}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover"
+                      loading={index < 3 ? "eager" : "lazy"}
+                      quality={85}
                     />
                   </div>
                   <div className="p-6">
@@ -125,7 +128,10 @@ export default function FleetContent() {
                   src="/truck0.jpg" 
                   alt="Fleet Technology"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
+                  loading="lazy"
+                  quality={85}
                 />
               </div>
             </div>

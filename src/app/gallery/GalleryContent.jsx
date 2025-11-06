@@ -54,10 +54,10 @@ export default function GalleryContent() {
 
       {/* Main Content with Animated Background */}
       <div className="bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
-        {/* Animated Background Gradient - Whole Background */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        {/* Animated Background Gradient - Whole Background - Optimized */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse will-change-opacity" style={{ animationDuration: '4s' }}></div>
+          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse will-change-opacity" style={{ animationDelay: '2s', animationDuration: '4s' }}></div>
         </div>
 
         {/* Filter Buttons */}
@@ -83,18 +83,21 @@ export default function GalleryContent() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredImages.map((image, index) => (
                 <motion.div
-                  key={index}
+                  key={`${image.src}-${index}`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.5) }}
                   className="relative h-64 rounded-lg overflow-hidden group cursor-pointer"
                 >
                   <Image
                     src={image.src}
                     alt={image.title}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-110 transition-transform duration-300 will-change-transform"
+                    loading={index < 6 ? "eager" : "lazy"}
+                    quality={85}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-0 left-0 right-0 p-4">
