@@ -18,7 +18,7 @@ export default function FleetContent() {
       {/* Hero Section */}
       <Section background="dark" className="pt-32 pb-20">
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30"
+          className="absolute inset-0 bg-cover bg-center opacity-60"
           style={{ backgroundImage: 'url(/truck0.jpg)' }}
         ></div>
         <div className="absolute inset-0 bg-black/70"></div>
@@ -40,104 +40,113 @@ export default function FleetContent() {
         </Container>
       </Section>
 
-      {/* Fleet Types */}
-      <Section background="dark">
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {FLEET_TYPES.map((equipment, index) => (
-              <Card key={index} className="bg-black/40 border border-white/10 overflow-hidden">
-                <div className="relative h-64">
-                  <Image 
-                    src={equipment.image} 
-                    alt={equipment.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-3">{equipment.name}</h3>
-                  <p className="text-gray-300 mb-4">{equipment.description}</p>
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-semibold text-red-400 mb-2">Specifications:</h4>
-                    <ul className="space-y-1">
-                      {equipment.specs.map((spec, idx) => (
-                        <li key={idx} className="text-gray-400 text-sm flex items-center">
-                          <span className="w-1.5 h-1.5 rounded-full bg-red-500 mr-2"></span>
-                          {spec}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </Section>
+      {/* Main Content with Animated Background */}
+      <div className="bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
+        {/* Animated Background Gradient - Whole Background */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        </div>
 
-      {/* Fleet Features */}
-      <Section background="dark">
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-6">Fleet Technology & Safety</h2>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="text-red-500 text-2xl mr-4">📡</div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">GPS Tracking</h3>
-                    <p className="text-gray-300">Real-time location tracking for all shipments</p>
+        {/* Fleet Types */}
+        <section className="py-24 relative">
+          <Container className="relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {FLEET_TYPES.map((equipment, index) => (
+                <Card key={index} className="bg-black/40 border border-white/10 overflow-hidden">
+                  <div className="relative h-64">
+                    <Image 
+                      src={equipment.image} 
+                      alt={equipment.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="text-red-500 text-2xl mr-4">🔧</div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">Regular Maintenance</h3>
-                    <p className="text-gray-300">Preventive maintenance programs ensure reliability</p>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-3">{equipment.name}</h3>
+                    <p className="text-gray-300 mb-4">{equipment.description}</p>
+                    <div className="space-y-2">
+                      <h4 className="text-sm font-semibold text-red-400 mb-2">Specifications:</h4>
+                      <ul className="space-y-1">
+                        {equipment.specs.map((spec, idx) => (
+                          <li key={idx} className="text-gray-400 text-sm flex items-center">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 mr-2"></span>
+                            {spec}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="text-red-500 text-2xl mr-4">🛡️</div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">Safety Standards</h3>
-                    <p className="text-gray-300">DOT compliant with excellent safety ratings</p>
+                </Card>
+              ))}
+            </div>
+          </Container>
+        </section>
+
+        {/* Fleet Features */}
+        <section className="py-24 relative">
+          <Container className="relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl font-bold text-white mb-6">Fleet Technology & Safety</h2>
+                <div className="space-y-4">
+                  <div className="flex items-start">
+                    <div className="text-red-500 text-2xl mr-4">📡</div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white mb-2">GPS Tracking</h3>
+                      <p className="text-gray-300">Real-time location tracking for all shipments</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="text-red-500 text-2xl mr-4">📊</div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">Performance Monitoring</h3>
-                    <p className="text-gray-300">Continuous monitoring and optimization</p>
+                  <div className="flex items-start">
+                    <div className="text-red-500 text-2xl mr-4">🔧</div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white mb-2">Regular Maintenance</h3>
+                      <p className="text-gray-300">Preventive maintenance programs ensure reliability</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="text-red-500 text-2xl mr-4">🛡️</div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white mb-2">Safety Standards</h3>
+                      <p className="text-gray-300">DOT compliant with excellent safety ratings</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="text-red-500 text-2xl mr-4">📊</div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white mb-2">Performance Monitoring</h3>
+                      <p className="text-gray-300">Continuous monitoring and optimization</p>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div className="relative h-96 rounded-lg overflow-hidden">
+                <Image 
+                  src="/truck0.jpg" 
+                  alt="Fleet Technology"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
-            <div className="relative h-96 rounded-lg overflow-hidden">
-              <Image 
-                src="/truck0.jpg" 
-                alt="Fleet Technology"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-        </Container>
-      </Section>
+          </Container>
+        </section>
 
-      {/* CTA */}
-      <Section background="dark">
-        <Container>
-          <div className="text-center bg-gradient-to-r from-red-900/20 to-red-800/20 rounded-lg p-12 border border-red-600/30">
-            <h2 className="text-3xl font-bold text-white mb-4">Ready to Ship?</h2>
-            <p className="text-gray-300 mb-8 text-lg">
-              Request a quote and experience our reliable fleet in action
-            </p>
-            <Button href="/quote" variant="primary" size="lg">
-              Request a Quote
-            </Button>
-          </div>
-        </Container>
-      </Section>
+        {/* CTA */}
+        <section className="py-24 relative">
+          <Container className="relative z-10">
+            <div className="text-center bg-gradient-to-r from-red-900/20 to-red-800/20 rounded-lg p-12 border border-red-600/30">
+              <h2 className="text-3xl font-bold text-white mb-4">Ready to Ship?</h2>
+              <p className="text-gray-300 mb-8 text-lg">
+                Request a quote and experience our reliable fleet in action
+              </p>
+              <Button href="/quote" variant="primary" size="lg">
+                Request a Quote
+              </Button>
+            </div>
+          </Container>
+        </section>
+      </div>
 
       <Footer />
     </div>

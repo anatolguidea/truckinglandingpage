@@ -49,7 +49,7 @@ export default function AboutContent() {
       {/* Hero Section */}
       <Section background="dark" className="pt-32 pb-20">
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30"
+          className="absolute inset-0 bg-cover bg-center opacity-60"
           style={{ backgroundImage: 'url(/truck0.jpg)' }}
         ></div>
         <div className="absolute inset-0 bg-black/70"></div>
@@ -61,9 +61,17 @@ export default function AboutContent() {
         </Container>
       </Section>
 
-      {/* Company Story */}
-      <Section background="dark">
-        <Container>
+      {/* Main Content with Animated Background */}
+      <div className="bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
+        {/* Animated Background Gradient - Whole Background */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        </div>
+
+        {/* Company Story */}
+        <section className="py-24 relative">
+          <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Our Story</h2>
@@ -93,12 +101,12 @@ export default function AboutContent() {
               />
             </div>
           </div>
-        </Container>
-      </Section>
+          </Container>
+        </section>
 
-      {/* Values */}
-      <Section background="dark">
-        <Container>
+        {/* Values */}
+        <section className="py-24 relative">
+          <Container className="relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Our Core Values</h2>
             <p className="text-gray-300 text-lg">The principles that guide everything we do</p>
@@ -112,12 +120,12 @@ export default function AboutContent() {
               </Card>
             ))}
           </div>
-        </Container>
-      </Section>
+          </Container>
+        </section>
 
-      {/* Timeline */}
-      <Section background="dark">
-        <Container>
+        {/* Timeline */}
+        <section className="py-24 relative">
+          <Container className="relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Our Journey</h2>
             <p className="text-gray-300 text-lg">Milestones in our growth and success</p>
@@ -131,10 +139,10 @@ export default function AboutContent() {
                   className={`flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                 >
                   <div className="w-full md:w-1/2 p-6">
-                    <Card className="bg-black/40 border border-white/10">
+                    <div>
                       <div className="text-red-500 font-bold text-2xl mb-2">{milestone.year}</div>
                       <div className="text-white text-lg">{milestone.event}</div>
-                    </Card>
+                    </div>
                   </div>
                   <div className="hidden md:block w-1/2"></div>
                   <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-red-600 rounded-full hidden md:block"></div>
@@ -142,12 +150,12 @@ export default function AboutContent() {
               ))}
             </div>
           </div>
-        </Container>
-      </Section>
+          </Container>
+        </section>
 
-      {/* CTA */}
-      <Section background="dark">
-        <Container>
+        {/* CTA */}
+        <section className="py-24 relative">
+          <Container className="relative z-10">
           <div className="text-center bg-gradient-to-r from-red-900/20 to-red-800/20 rounded-lg p-12 border border-red-600/30">
             <h2 className="text-3xl font-bold text-white mb-4">Ready to Work With Us?</h2>
             <p className="text-gray-300 mb-8 text-lg">
@@ -168,8 +176,9 @@ export default function AboutContent() {
               </a>
             </div>
           </div>
-        </Container>
-      </Section>
+          </Container>
+        </section>
+      </div>
 
       <Footer />
     </div>

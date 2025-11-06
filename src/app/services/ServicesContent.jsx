@@ -19,7 +19,7 @@ export default function ServicesContent() {
       {/* Hero Section */}
       <Section background="dark" className="pt-32 pb-20">
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30"
+          className="absolute inset-0 bg-cover bg-center opacity-60"
           style={{ backgroundImage: 'url(/logistics.jpg)' }}
         ></div>
         <div className="absolute inset-0 bg-black/70"></div>
@@ -35,50 +35,59 @@ export default function ServicesContent() {
         </Container>
       </Section>
 
-      {/* Services Grid */}
-      <Section background="dark">
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {SERVICE_TYPES.map((service, index) => (
-              <Link key={index} href={`/services/${service.slug}`}>
-                <Card className="group cursor-pointer h-full">
-                  <div className="relative h-48 overflow-hidden">
-                    <Image 
-                      src={service.icon} 
-                      alt={service.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                  </div>
-                  <div className="p-6 bg-black/40 border-t border-white/10">
-                    <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-                    <p className="text-gray-300 mb-4">{service.description}</p>
-                    <div className="text-red-400 font-semibold group-hover:text-red-300 transition-colors">
-                      Learn More →
-                    </div>
-                  </div>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </Container>
-      </Section>
+      {/* Main Content with Animated Background */}
+      <div className="bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
+        {/* Animated Background Gradient - Whole Background */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        </div>
 
-      {/* CTA Section */}
-      <Section background="dark">
-        <Container>
-          <div className="text-center bg-gradient-to-r from-red-900/20 to-red-800/20 rounded-lg p-12 border border-red-600/30">
-            <h2 className="text-3xl font-bold text-white mb-4">Need a Custom Solution?</h2>
-            <p className="text-gray-300 mb-8 text-lg">
-              Our team can create a logistics solution tailored to your specific requirements
-            </p>
-            <Button href="/quote" variant="primary" size="lg">
-              Request a Quote
-            </Button>
-          </div>
-        </Container>
-      </Section>
+        {/* Services Grid */}
+        <section className="py-24 relative">
+          <Container className="relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {SERVICE_TYPES.map((service, index) => (
+                <Link key={index} href={`/services/${service.slug}`}>
+                  <Card className="group cursor-pointer h-full">
+                    <div className="relative h-48 overflow-hidden">
+                      <Image 
+                        src={service.icon} 
+                        alt={service.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    </div>
+                    <div className="p-6 bg-black/40 border-t border-white/10">
+                      <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+                      <p className="text-gray-300 mb-4">{service.description}</p>
+                      <div className="text-red-400 font-semibold group-hover:text-red-300 transition-colors">
+                        Learn More →
+                      </div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-24 relative">
+          <Container className="relative z-10">
+            <div className="text-center bg-gradient-to-r from-red-900/20 to-red-800/20 rounded-lg p-12 border border-red-600/30">
+              <h2 className="text-3xl font-bold text-white mb-4">Need a Custom Solution?</h2>
+              <p className="text-gray-300 mb-8 text-lg">
+                Our team can create a logistics solution tailored to your specific requirements
+              </p>
+              <Button href="/quote" variant="primary" size="lg">
+                Request a Quote
+              </Button>
+            </div>
+          </Container>
+        </section>
+      </div>
 
       <Footer />
     </div>
