@@ -25,6 +25,8 @@ export default function ApplyContent() {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -32,6 +34,8 @@ export default function ApplyContent() {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
+    // Clear error when user starts typing
+    if (error) setError('');
   };
 
   const handleEndorsements = (endorsement) => {
@@ -44,10 +48,15 @@ export default function ApplyContent() {
           : [...prev.endorsements, endorsement],
       };
     });
+    // Clear error when user makes changes
+    if (error) setError('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setError('');
+    
     try {
       const response = await fetch('/api/apply', {
         method: 'POST',
@@ -57,7 +66,9 @@ export default function ApplyContent() {
         body: JSON.stringify(formData),
       });
       
-      if (response.ok) {
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
         setIsSubmitted(true);
         setTimeout(() => {
           setIsSubmitted(false);
@@ -76,11 +87,12 @@ export default function ApplyContent() {
           });
         }, 5000);
       } else {
-        alert('Failed to submit application. Please try again.');
+        setError(data.message || 'Failed to submit application. Please try again.');
       }
     } catch (error) {
-      console.error('Error submitting application:', error);
-      alert('An error occurred. Please try again.');
+      setError('An error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -135,6 +147,11 @@ export default function ApplyContent() {
                   animate={{ opacity: 1, y: 0 }}
                   className="bg-black/40 border border-white/10 rounded-lg p-8"
                 >
+                  {error && (
+                    <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+                      <p className="text-red-400 text-sm">{error}</p>
+                    </div>
+                  )}
                   <form onSubmit={handleSubmit} className="space-y-8">
                     {/* Personal Information */}
                     <div>
@@ -316,8 +333,13 @@ export default function ApplyContent() {
                     </div>
 
                     <div className="flex justify-end pt-4">
-                      <Button type="submit" variant="primary" size="lg">
-                        Submit Application
+                      <Button 
+                        type="submit" 
+                        variant="primary" 
+                        size="lg"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? 'Submitting...' : 'Submit Application'}
                       </Button>
                     </div>
                   </form>

@@ -6,12 +6,13 @@ export const COMPANY_INFO = {
     employment: '(815) 207-3622'
   },
   email: 'office@nomadexpressgroup.com',
+  hrEmail: 'hr@nomadexpressgroup.com',
   established: '2018',
   address: {
-    street: '1234 Logistics Way',
-    city: 'Dallas',
-    state: 'TX',
-    zip: '75201'
+    street: '820 Poplar Ln',
+    city: 'Bolingbrook',
+    state: 'IL',
+    zip: '60440'
   },
   hours: {
     weekdays: 'Monday - Friday: 8:00 AM - 6:00 PM',

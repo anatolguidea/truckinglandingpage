@@ -8,6 +8,7 @@ import Section from '../../components/ui/Section';
 import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 import Link from 'next/link';
+import { COMPANY_INFO } from '../../utils/constants';
 
 export default function CareersContent() {
   const benefits = [
@@ -198,8 +199,13 @@ export default function CareersContent() {
                     <Button href="/apply" variant="primary" size="lg" className="w-full">
                       Start Application
                     </Button>
-                    <div className="text-center text-gray-400 text-sm">
-                      Or call us at <a href="tel:8152073622" className="text-red-400 hover:text-red-300">(815) 207-3622</a>
+                    <div className="text-center text-gray-400 text-sm space-y-2">
+                      <div>
+                        Or call us at <a href="tel:8152073622" className="text-red-400 hover:text-red-300">(815) 207-3622</a>
+                      </div>
+                      <div>
+                        Or email us at <a href={`mailto:${COMPANY_INFO.hrEmail}`} className="text-red-400 hover:text-red-300">{COMPANY_INFO.hrEmail}</a>
+                      </div>
                     </div>
                   </div>
                 </div>

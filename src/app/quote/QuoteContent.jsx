@@ -8,6 +8,7 @@ import Container from '../../components/ui/Container';
 import Section from '../../components/ui/Section';
 import Button from '../../components/ui/Button';
 import * as motion from 'motion/react-client';
+import { SERVICE_TYPES } from '../../utils/constants';
 
 export default function QuoteContent() {
   const [formData, setFormData] = useState({
@@ -24,16 +25,23 @@ export default function QuoteContent() {
     notes: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }));
+    // Clear error when user starts typing
+    if (error) setError('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setError('');
+    
     try {
       const response = await fetch('/api/quote', {
         method: 'POST',
@@ -43,7 +51,9 @@ export default function QuoteContent() {
         body: JSON.stringify(formData),
       });
       
-      if (response.ok) {
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
         setIsSubmitted(true);
         setTimeout(() => {
           setIsSubmitted(false);
@@ -62,11 +72,12 @@ export default function QuoteContent() {
           });
         }, 5000);
       } else {
-        alert('Failed to submit quote request. Please try again.');
+        setError(data.message || 'Failed to submit quote request. Please try again.');
       }
     } catch (error) {
-      console.error('Error submitting quote:', error);
-      alert('An error occurred. Please try again.');
+      setError('An error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -128,6 +139,11 @@ export default function QuoteContent() {
                   className="bg-black/40 border border-white/10 rounded-lg p-8"
                 >
                   <h2 className="text-2xl font-bold text-white mb-6">Shipping Details</h2>
+                  {error && (
+                    <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+                      <p className="text-red-400 text-sm">{error}</p>
+                    </div>
+                  )}
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
@@ -188,12 +204,11 @@ export default function QuoteContent() {
                         className="w-full px-4 py-2 bg-black/60 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-red-500"
                       >
                         <option value="">Select freight type</option>
-                        <option value="flatbed">Flatbed</option>
-                        <option value="refrigerated">Refrigerated</option>
-                        <option value="dry-van">Dry Van</option>
-                        <option value="ltl">LTL</option>
-                        <option value="expedited">Expedited</option>
-                        <option value="heavy-haul">Heavy Haul</option>
+                        {SERVICE_TYPES.map((service) => (
+                          <option key={service.slug} value={service.slug}>
+                            {service.title}
+                          </option>
+                        ))}
                       </select>
                     </div>
 
@@ -270,8 +285,14 @@ export default function QuoteContent() {
                       />
                     </div>
 
-                    <Button type="submit" variant="primary" size="lg" className="w-full">
-                      Request Quote
+                    <Button 
+                      type="submit" 
+                      variant="primary" 
+                      size="lg" 
+                      className="w-full"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Submitting...' : 'Request Quote'}
                     </Button>
                   </form>
                 </motion.div>

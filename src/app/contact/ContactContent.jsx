@@ -19,16 +19,23 @@ export default function ContactContent() {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }));
+    // Clear error when user starts typing
+    if (error) setError('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setError('');
+    
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -38,7 +45,9 @@ export default function ContactContent() {
         body: JSON.stringify(formData),
       });
       
-      if (response.ok) {
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
         setIsSubmitted(true);
         setTimeout(() => {
           setIsSubmitted(false);
@@ -51,11 +60,12 @@ export default function ContactContent() {
           });
         }, 5000);
       } else {
-        alert('Failed to send message. Please try again.');
+        setError(data.message || 'Failed to send message. Please try again.');
       }
     } catch (error) {
-      console.error('Error sending message:', error);
-      alert('An error occurred. Please try again.');
+      setError('An error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -138,6 +148,11 @@ export default function ContactContent() {
               {/* Contact Form */}
               <Card className="bg-black/40 border border-white/10 p-8">
                 <h2 className="text-2xl font-bold text-white mb-6">Send Us a Message</h2>
+                {error && (
+                  <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+                    <p className="text-red-400 text-sm">{error}</p>
+                  </div>
+                )}
                 {isSubmitted ? (
                   <div className="text-center py-8">
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -204,8 +219,14 @@ export default function ContactContent() {
                         className="w-full px-4 py-2 bg-black/60 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-red-500"
                       />
                     </div>
-                    <Button type="submit" variant="primary" size="lg" className="w-full">
-                      Send Message
+                    <Button 
+                      type="submit" 
+                      variant="primary" 
+                      size="lg" 
+                      className="w-full"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
                     </Button>
                   </form>
                 )}
