@@ -88,22 +88,10 @@ export const SERVICE_TYPES = [
 
 export const FLEET_TYPES = [
   {
-    name: 'Dry Vans',
-    description: 'Standard enclosed trailers for general freight',
-    image: '/truck0.jpg',
-    specs: ['53ft length', '26 pallets', '45,000 lbs capacity']
-  },
-  {
-    name: 'Reefers',
-    description: 'Refrigerated trailers with temperature control',
-    image: '/refrigerated.jpg',
-    specs: ['53ft length', 'Temperature: -20°F to 70°F', 'GPS monitoring']
-  },
-  {
-    name: 'Flatbeds',
-    description: 'Open deck trailers for oversized loads',
-    image: '/flatbed.jpg',
-    specs: ['48ft-53ft length', 'Up to 48,000 lbs', 'Tarping available']
+    name: 'RGN Trailers',
+    description: 'Removable Gooseneck trailers for heavy haul and oversized equipment',
+    image: '/heavyhaul.jpg',
+    specs: ['Up to 80,000 lbs capacity', 'Removable gooseneck design', 'Ideal for construction equipment']
   },
   {
     name: 'Step Decks',
@@ -112,16 +100,28 @@ export const FLEET_TYPES = [
     specs: ['48ft-53ft length', 'Lower clearance', 'Heavy haul capable']
   },
   {
-    name: 'Hotshots',
-    description: 'Fast delivery for time-sensitive freight',
-    image: '/truck0.jpg',
-    specs: ['1-ton trucks', 'Fast transit times', 'Direct delivery']
+    name: 'Flatbeds',
+    description: 'Open deck trailers for oversized loads',
+    image: '/flatbed.jpg',
+    specs: ['48ft-53ft length', 'Up to 48,000 lbs', 'Tarping available']
   },
   {
-    name: 'Box Trucks',
-    description: 'Smaller vehicles for local and regional delivery',
+    name: 'Conestoga Trailers',
+    description: 'Enclosed trailers with roll-back tarp system for protected oversized cargo',
     image: '/truck0.jpg',
-    specs: ['24ft-26ft length', 'Local delivery', 'Quick turnaround']
+    specs: ['48ft-53ft length', 'Roll-back tarp system', 'Weather protection']
+  },
+  {
+    name: 'Reefers',
+    description: 'Refrigerated trailers with temperature control',
+    image: '/refrigerated.jpg',
+    specs: ['53ft length', 'Temperature: -20°F to 70°F', 'GPS monitoring']
+  },
+  {
+    name: 'Dry Vans',
+    description: 'Standard enclosed trailers for general freight',
+    image: '/truck0.jpg',
+    specs: ['53ft length', '26 pallets', '45,000 lbs capacity']
   }
 ];
 
