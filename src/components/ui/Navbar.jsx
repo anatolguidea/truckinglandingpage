@@ -137,7 +137,7 @@ const Navbar = () => {
                   </Link>
                 ))}
               </div>
-              <div className="mt-8 space-y-3">
+              <div className="mt-8">
                 <Link href={ROUTES.quote} onClick={() => setIsMobileMenuOpen(false)}>
                   <button
                     className="w-full text-white px-4 py-3 rounded-lg font-medium transition-all duration-200"
@@ -155,7 +155,7 @@ const Navbar = () => {
                     Get a Quote
                   </button>
                 </Link>
-                <Link href={ROUTES.careers} onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href={ROUTES.careers} onClick={() => setIsMobileMenuOpen(false)} className="block mt-6">
                   <button className="w-full border border-white text-white hover:bg-white hover:text-black px-4 py-3 rounded-lg font-medium">
                     Drive With Us
                   </button>
