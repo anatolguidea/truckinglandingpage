@@ -14,9 +14,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           <div className="md:col-span-2">
             <Link href={ROUTES.home}>
-              <div className="flex items-center space-x-3 mb-4 cursor-pointer">
-                <Image src="/logo.jpg" alt="Nomad Express Group Logo" width={112} height={32} />
-                <span className="text-white font-bold text-lg">Nomad Express Group</span>
+              <div className="flex items-center space-x-2 mb-4 cursor-pointer">
+                <Image src="/NEG Logo gradient white.png" alt="Nomad Express Group Logo" width={40} height={16} className="object-contain" />
+                <span className="text-white font-semibold text-sm tracking-tight">NomadExpressGroup</span>
               </div>
             </Link>
             <p className="text-gray-400 text-sm mb-6">

@@ -42,9 +42,10 @@ const Navbar = () => {
             <Link href={ROUTES.home}>
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="flex-shrink-0 flex items-center space-x-3 cursor-pointer"
+                className="flex-shrink-0 flex items-center space-x-2 cursor-pointer"
               >
-                <Image src="/NEG Logo gradient white.png" alt="Nomad Express Group Logo" width={112} height={32} priority />
+                <Image src="/NEG Logo gradient white.png" alt="Nomad Express Group Logo" width={40} height={16} priority className="object-contain" />
+                <span className="text-white font-semibold text-sm tracking-tight hidden sm:block">NomadExpressGroup</span>
               </motion.div>
             </Link>
 
