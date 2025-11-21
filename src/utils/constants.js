@@ -9,10 +9,10 @@ export const COMPANY_INFO = {
   hrEmail: 'hr@nomadexpressgroup.com',
   established: '2018',
   address: {
-    street: '820 Poplar Ln',
-    city: 'Bolingbrook',
+    street: '1019 Caton Farm Rd',
+    city: 'Lockport',
     state: 'IL',
-    zip: '60440'
+    zip: '60441'
   },
   hours: {
     weekdays: 'Monday - Friday: 8:00 AM - 6:00 PM',
