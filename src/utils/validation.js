@@ -19,15 +19,64 @@ export const sanitizeInput = (input) => {
 };
 
 /**
- * Validates email format
+ * Sanitizes an email address for safe use in email headers
+ * Removes control characters, newlines, and other dangerous characters that could lead to header injection
+ * @param {string} email - Email address to sanitize
+ * @returns {string} - Sanitized email address
+ */
+export const sanitizeEmailForHeader = (email) => {
+  if (!email || typeof email !== 'string') return '';
+  
+  return email
+    .trim()
+    .toLowerCase()
+    // Remove control characters (newlines, carriage returns, tabs, null bytes, etc.)
+    .replace(/[\r\n\t\0\x00-\x1F\x7F-\x9F]/g, '')
+    // Remove characters that could be used for header injection
+    .replace(/[<>"']/g, '')
+    // Remove multiple consecutive dots
+    .replace(/\.{2,}/g, '.')
+    // Remove leading/trailing dots
+    .replace(/^\.+|\.+$/g, '');
+};
+
+/**
+ * Sanitizes a subject line for safe use in email headers
+ * Prevents header injection by removing newlines and control characters
+ * @param {string} subject - Subject line to sanitize
+ * @returns {string} - Sanitized subject line
+ */
+export const sanitizeSubjectForHeader = (subject) => {
+  if (!subject || typeof subject !== 'string') return '';
+  
+  return subject
+    .trim()
+    // Remove control characters (newlines, carriage returns, tabs, null bytes, etc.)
+    .replace(/[\r\n\t\0\x00-\x1F\x7F-\x9F]/g, ' ')
+    // Replace multiple spaces with single space
+    .replace(/\s+/g, ' ')
+    // Limit length to prevent header overflow (RFC 5322 recommends max 78 characters)
+    .substring(0, 200);
+};
+
+/**
+ * Validates email format and checks for header injection attempts
  * @param {string} email - Email address to validate
- * @returns {boolean} - True if valid email format
+ * @returns {boolean} - True if valid email format and safe
  */
 export const isValidEmail = (email) => {
   if (!email || typeof email !== 'string') return false;
   
+  const trimmed = email.trim();
+  
+  // Check for header injection attempts (newlines, carriage returns, etc.)
+  if (/[\r\n\t\0]/.test(trimmed)) {
+    return false;
+  }
+  
+  // Validate email format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email.trim());
+  return emailRegex.test(trimmed);
 };
 
 /**
@@ -91,10 +140,12 @@ export const validateContactForm = (formData) => {
   }
   
   if (formData.email) {
-    sanitizedData.email = sanitizeInput(formData.email).toLowerCase();
-    if (!isValidEmail(sanitizedData.email)) {
+    // First validate the email format
+    if (!isValidEmail(formData.email)) {
       errors.push('Please enter a valid email address');
     }
+    // Then sanitize for safe use in headers
+    sanitizedData.email = sanitizeEmailForHeader(formData.email);
   }
   
   if (formData.phone) {
@@ -105,7 +156,8 @@ export const validateContactForm = (formData) => {
   }
   
   if (formData.subject) {
-    sanitizedData.subject = sanitizeInput(formData.subject);
+    // Sanitize subject for safe use in email headers
+    sanitizedData.subject = sanitizeSubjectForHeader(formData.subject);
     if (sanitizedData.subject.length < 3) {
       errors.push('Subject must be at least 3 characters long');
     }
@@ -160,10 +212,12 @@ export const validateQuoteForm = (formData) => {
   }
   
   if (formData.email) {
-    sanitizedData.email = sanitizeInput(formData.email).toLowerCase();
-    if (!isValidEmail(sanitizedData.email)) {
+    // First validate the email format
+    if (!isValidEmail(formData.email)) {
       errors.push('Please enter a valid email address');
     }
+    // Then sanitize for safe use in headers
+    sanitizedData.email = sanitizeEmailForHeader(formData.email);
   }
   
   if (formData.phone) {
@@ -263,10 +317,12 @@ export const validateApplicationForm = (formData) => {
   }
   
   if (formData.email) {
-    sanitizedData.email = sanitizeInput(formData.email).toLowerCase();
-    if (!isValidEmail(sanitizedData.email)) {
+    // First validate the email format
+    if (!isValidEmail(formData.email)) {
       errors.push('Please enter a valid email address');
     }
+    // Then sanitize for safe use in headers
+    sanitizedData.email = sanitizeEmailForHeader(formData.email);
   }
   
   if (formData.phone) {

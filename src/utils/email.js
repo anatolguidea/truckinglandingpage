@@ -150,14 +150,17 @@ const escapeHtml = (text) => {
 export const sendContactFormEmail = async (formData) => {
   const { name, email, phone, subject, message } = formData;
   
-  // Escape all user input to prevent XSS in email
+  // Note: email and subject are already sanitized by validation functions
+  // But we'll use them directly as they're safe for headers
+  // Escape all user input to prevent XSS in email HTML body
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
   const safePhone = phone ? escapeHtml(phone) : 'Not provided';
   const safeSubject = escapeHtml(subject);
   const safeMessage = escapeHtml(message);
   
-  const emailSubject = `Contact Form: ${safeSubject}`;
+  // Use sanitized subject (already sanitized in validation)
+  const emailSubject = `Contact Form: ${subject}`;
   const recipientEmail = process.env.HR_EMAIL;
   
   if (!recipientEmail) {
@@ -221,7 +224,8 @@ You can reply directly to this email to respond to ${name} at ${email}.
     subject: emailSubject,
     text: emailText,
     html: emailHtml,
-    // Set reply-to to the user's email so you can reply directly
+    // Set reply-to to the user's email (already sanitized by validation)
+    // This is safe because validation ensures no header injection characters
     replyTo: email,
   });
 };
@@ -245,7 +249,8 @@ You can reply directly to this email to respond to ${name} at ${email}.
 export const sendQuoteFormEmail = async (formData) => {
   const { name, email, companyName, phone, freightType, pickupLocation, deliveryLocation, weight, dimensions, pickupDate, notes } = formData;
   
-  // Escape all user input to prevent XSS in email
+  // Note: email is already sanitized by validation functions for header safety
+  // Escape all user input to prevent XSS in email HTML body
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
   const safeCompanyName = companyName ? escapeHtml(companyName) : 'Not provided';
@@ -258,7 +263,8 @@ export const sendQuoteFormEmail = async (formData) => {
   const safePickupDate = pickupDate ? escapeHtml(pickupDate) : 'Not specified';
   const safeNotes = notes ? escapeHtml(notes) : 'None';
   
-  const emailSubject = `New Quote Request: ${safeFreightType} - ${safePickupLocation} to ${safeDeliveryLocation}`;
+  // Use sanitized values for subject (freightType, locations already sanitized in validation)
+  const emailSubject = `New Quote Request: ${freightType} - ${pickupLocation} to ${deliveryLocation}`;
   const recipientEmail = process.env.QUOTE_EMAIL;
   
   if (!recipientEmail) {
@@ -344,7 +350,8 @@ You can reply directly to this email to respond to ${name} at ${email}.
     subject: emailSubject,
     text: emailText,
     html: emailHtml,
-    // Set reply-to to the user's email so you can reply directly
+    // Set reply-to to the user's email (already sanitized by validation)
+    // This is safe because validation ensures no header injection characters
     replyTo: email,
   });
 };
@@ -368,7 +375,8 @@ You can reply directly to this email to respond to ${name} at ${email}.
 export const sendApplicationFormEmail = async (formData) => {
   const { firstName, lastName, email, phone, city, state, cdlClass, yearsExperience, endorsements, hasTWIC, message } = formData;
   
-  // Escape all user input to prevent XSS in email
+  // Note: email is already sanitized by validation functions for header safety
+  // Escape all user input to prevent XSS in email HTML body
   const safeFirstName = escapeHtml(firstName);
   const safeLastName = escapeHtml(lastName);
   const safeEmail = escapeHtml(email);
@@ -384,7 +392,8 @@ export const sendApplicationFormEmail = async (formData) => {
   const fullName = `${firstName} ${lastName}`;
   const safeFullName = `${safeFirstName} ${safeLastName}`;
   
-  const emailSubject = `New Driver Application: ${safeFullName} - ${safeCdlClass}`;
+  // Use sanitized values for subject (names and cdlClass already sanitized in validation)
+  const emailSubject = `New Driver Application: ${fullName} - ${cdlClass || 'Non-CDL'}`;
   const recipientEmail = process.env.HR_EMAIL;
   
   if (!recipientEmail) {

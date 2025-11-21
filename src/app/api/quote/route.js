@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { sendQuoteFormEmail } from '../../../utils/email';
 import { validateQuoteForm } from '../../../utils/validation';
+import { checkRateLimit, getClientIP } from '../../../utils/rateLimit';
 
 /**
  * POST /api/quote
@@ -8,6 +9,28 @@ import { validateQuoteForm } from '../../../utils/validation';
  */
 export async function POST(request) {
   try {
+    // Rate limiting: 5 requests per 15 minutes per IP
+    const clientIP = getClientIP(request);
+    const rateLimit = checkRateLimit(clientIP, 5, 15 * 60 * 1000);
+    
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { 
+          success: false, 
+          message: 'Too many requests. Please try again later.' 
+        },
+        { 
+          status: 429,
+          headers: {
+            'Retry-After': Math.ceil((rateLimit.resetAt - Date.now()) / 1000).toString(),
+            'X-RateLimit-Limit': '5',
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': rateLimit.resetAt.toString()
+          }
+        }
+      );
+    }
+    
     // Parse request body
     let body;
     try {
@@ -59,14 +82,19 @@ export async function POST(request) {
       );
     }
     
-    // Success response
+    // Success response with rate limit headers
     return NextResponse.json(
       { 
         success: true, 
         message: 'Quote request received successfully. We will contact you within 24 hours.' 
       },
       { 
-        status: 200
+        status: 200,
+        headers: {
+          'X-RateLimit-Limit': '5',
+          'X-RateLimit-Remaining': rateLimit.remaining.toString(),
+          'X-RateLimit-Reset': rateLimit.resetAt.toString()
+        }
       }
     );
     
