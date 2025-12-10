@@ -30,7 +30,7 @@ export const ROUTES = {
   fleet: '/fleet',
   careers: '/careers',
   apply: '/apply',
-  gallery: '/gallery',
+  //gallery: '/gallery',
   faq: '/faq',
   contact: '/contact',
   quote: '/quote',
@@ -44,7 +44,7 @@ export const NAVIGATION_ITEMS = [
   { name: 'Services', href: ROUTES.services },
   { name: 'Fleet', href: ROUTES.fleet },
   { name: 'Careers', href: ROUTES.careers },
-  { name: 'Gallery', href: ROUTES.gallery },
+  //{ name: 'Gallery', href: ROUTES.gallery },
   { name: 'Contact', href: ROUTES.contact }
 ];
 

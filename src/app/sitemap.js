@@ -13,7 +13,7 @@ export default function sitemap() {
     { path: '/fleet', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/careers', priority: 0.9, changeFrequency: 'weekly' },
     { path: '/apply', priority: 0.8, changeFrequency: 'monthly' },
-    { path: '/gallery', priority: 0.7, changeFrequency: 'monthly' },
+    // { path: '/gallery', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/faq', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/contact', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/quote', priority: 0.9, changeFrequency: 'weekly' },

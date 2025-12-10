@@ -4,7 +4,7 @@ import QuickAboutSection from '../components/sections/QuickAboutSection';
 import ServicesSection from '../components/sections/ServicesSection';
 import FleetPreviewSection from '../components/sections/FleetPreviewSection';
 import StatsSection from '../components/sections/StatsSection';
-import TestimonialsSection from '../components/sections/TestimonialsSection';
+// import TestimonialsSection from '../components/sections/TestimonialsSection';
 import CTASection from '../components/sections/CTASection';
 import Footer from '../components/ui/Footer';
 
@@ -17,7 +17,7 @@ export default function Home() {
       <ServicesSection />
       <FleetPreviewSection />
       <StatsSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <CTASection />
       <Footer />
     </div>
