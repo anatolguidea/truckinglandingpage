@@ -2,7 +2,7 @@
 export const COMPANY_INFO = {
   name: 'Nomad Express Group',
   phone: {
-    transportation: '(508) 292-3152',
+    transportation: '(815) 207-3622',
     employment: '(815) 207-3622'
   },
   email: 'office@nomadexpressgroup.com',
@@ -71,7 +71,7 @@ export const SERVICE_TYPES = [
     slug: 'refrigerated',
     title: 'Refrigerated Transport',
     description: 'Temperature-controlled shipping for perishables',
-    icon: '/refrigerated.jpg'
+    icon: '/refeer.jpg'
   }
 ];
 
@@ -103,7 +103,7 @@ export const FLEET_TYPES = [
   {
     name: 'Reefers',
     description: 'Refrigerated trailers with temperature control',
-    image: '/refrigerated.jpg',
+    image: '/refeer.jpg',
     specs: ['53ft length', 'Temperature: -20°F to 70°F', 'GPS monitoring']
   },
   {
