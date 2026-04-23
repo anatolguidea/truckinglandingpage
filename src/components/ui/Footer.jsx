@@ -88,7 +88,7 @@ const Footer = () => {
               <p className="text-gray-400 text-sm">
                 © {currentYear} Nomad Express Group. All rights reserved.
               </p>
-              <p className="text-gray-500 text-xs">
+              {/* <p className="text-gray-500 text-xs">
                 Website developed by{' '}
                 <a 
                   href="https://zcodesite.vercel.app" 
@@ -98,7 +98,7 @@ const Footer = () => {
                 >
                   Zcode
                 </a>
-              </p>
+              </p> */}
             </div>
             <div className="flex gap-6 text-gray-400 text-sm">
               <Link href={ROUTES.privacy} className="hover:text-white transition-colors">Privacy Policy</Link>
