@@ -7,6 +7,7 @@ export const JOB_STATUS = {
 export const jobs = [
   {
     id: 'hazmat-tanker-driver',
+    postId: 'postid12435804237543580',
     title: 'Heavy and Tractor-Trailer Truck Driver – Hazmat/Tanker',
     company: 'Office Nomad Express',
     location: 'Bolingbrook, IL',
@@ -74,3 +75,5 @@ export const jobs = [
 ];
 
 export const openJobs = jobs.filter((job) => job.status === JOB_STATUS.OPEN);
+
+export const findJobByPostId = (postId) => jobs.find((job) => job.postId === postId) ?? null;

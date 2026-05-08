@@ -1,3 +1,5 @@
+import { openJobs } from '../data/jobs';
+
 export default function sitemap() {
   const baseUrl = 'https://www.nomadexpressgroup.com';
   const routes = [
@@ -21,12 +23,16 @@ export default function sitemap() {
     { path: '/terms', priority: 0.3, changeFrequency: 'yearly' },
   ];
 
-  return routes.map((route) => ({
+  const jobRoutes = openJobs.map((job) => ({
+    path: `/careers/${job.postId}`,
+    priority: 0.8,
+    changeFrequency: 'weekly',
+  }));
+
+  return [...routes, ...jobRoutes].map((route) => ({
     url: `${baseUrl}${route.path}`,
     lastModified: new Date(),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));
 }
-
-
